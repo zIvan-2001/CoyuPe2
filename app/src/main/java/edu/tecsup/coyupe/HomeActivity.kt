@@ -35,6 +35,8 @@ class   HomeActivity : AppCompatActivity() {
 
         toogle.syncState()
 
+        user = FirebaseAuth.getInstance()
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.NavContainer.setNavigationItemSelectedListener {
@@ -74,31 +76,19 @@ class   HomeActivity : AppCompatActivity() {
                     }
                 }
 
-                R.id.nav_SignUp -> Toast.makeText(this, "Salte D:", Toast.LENGTH_SHORT).show()
+                R.id.nav_SignUp -> {
+                    user.signOut()
+                    startActivity(
+                        Intent(this, MainActivity::class.java)
+                    )
+                }
+//                    Toast.makeText(this, "Salte D:", Toast.LENGTH_SHORT).show()
 
             }
             binding.draweLayout.closeDrawer(GravityCompat.START)
             true
         }
-        /** Funcion para cerrar sesion */
-//        user = FirebaseAuth.getInstance()
-//
-//        if (user.currentUser != null){
-//            user.currentUser?.let {
-//
-//                binding.NombreId.text = it.email
-//            }
-//        }
-//        binding.ButtonSalir.setOnClickListener{
-//            user.signOut()
-//            startActivity(
-//                Intent(
-//                    this,
-//                    MainActivity::class.java
-//                )
-//            )
-//            finish()
-//        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

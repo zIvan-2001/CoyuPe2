@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         user = FirebaseAuth.getInstance()
 
         /** Funcion */
-//      SignCessionFine()
+          SignCessionFine()
 
         binding.btnLogin.setOnClickListener{
             registerUser()
@@ -38,12 +38,12 @@ class MainActivity : AppCompatActivity() {
     }
 
 /** Funcion para que cuando cierres la aplicacion se mantenga el login del usuario*/
-//    private fun SignCessionFine(){
-//        if (user.currentUser !=null){
-//            startActivity(Intent(this, HomeActivity::class.java))
-//            finish()
-//        }
-//    }
+    private fun SignCessionFine(){
+        if (user.currentUser !=null){
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
+    }
 
     private fun registerUser(){
 
@@ -52,17 +52,8 @@ class MainActivity : AppCompatActivity() {
 
         if (email.isNotEmpty() && password.isNotEmpty()){
 
-            user.createUserWithEmailAndPassword(email, password)
+            user.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(MainActivity()) { task ->
-                    if (task.isSuccessful){
-                        Toast.makeText(this,
-                            "User added successfully",
-                            Toast.LENGTH_SHORT).show()
-
-                        startActivity(Intent(this, HomeActivity::class.java))
-                        finish()
-
-                    }else{
                         user.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener {mtask ->
                                 if (mtask.isSuccessful){
@@ -70,13 +61,12 @@ class MainActivity : AppCompatActivity() {
                                     finish()
                                 }else{
 
-                                    Toast.makeText(this, "Tu contraseña es incorrecta", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "Tu contraseña es incorrecta o no existe este uruario", Toast.LENGTH_SHORT).show()
 //                                    Toast.makeText(this,
 //                                        task.exception!!.message,
 //                                        Toast.LENGTH_SHORT).show()
                                 }
                             }
-                    }
                 }
         }else{
             Toast.makeText(this,

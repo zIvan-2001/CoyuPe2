@@ -29,37 +29,4 @@
         >
     </com.google.android.material.navigation.NavigationView>
 
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        android:padding="10dp"-->
-<!--        >-->
-<!--        <Button-->
-<!--            android:id="@+id/ButtonSalir"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Cerrar Sesion">-->
-<!--        </Button>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/WelcomeId"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Welcome"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="20dp">-->
-<!--        </TextView>-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/NombreId"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="#"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="20dp">-->
-<!--        </TextView>-->
-
-<!--    </LinearLayout>-->
-
 </androidx.drawerlayout.widget.DrawerLayout>
