@@ -80,7 +80,8 @@
             android:backgroundTint="@color/botton"
             />
         <com.google.android.gms.common.SignInButton
-            android:layout_width="310dp"
+            android:id="@+id/btnSignIn"
+            android:layout_width="match_parent"
             android:layout_height="45dp">
 
         </com.google.android.gms.common.SignInButton>
