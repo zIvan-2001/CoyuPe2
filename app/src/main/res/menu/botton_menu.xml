@@ -7,18 +7,6 @@
     </item>
 
     <item
-        android:id="@+id/nav_contact"
-        android:title="Contacto"
-        android:icon="@drawable/ic_contact">
-    </item>
-
-    <item
-        android:id="@+id/nav_help"
-        android:title="¿Qué ofrecemos?"
-        android:icon="@drawable/ic_help">
-    </item>
-
-    <item
         android:id="@+id/nav_ubication"
         android:title="Ubicacion"
         android:icon="@drawable/ic_location">
@@ -30,10 +18,5 @@
         android:icon="@drawable/ic_shopping">
     </item>
 
-    <item
-        android:id="@+id/nav_SignUp"
-        android:title="Salir"
-        android:icon="@drawable/ic_exit">
-</item>
 
 </menu>

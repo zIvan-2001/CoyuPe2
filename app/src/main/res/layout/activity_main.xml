@@ -82,6 +82,7 @@
         <com.google.android.gms.common.SignInButton
             android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
+            android:textAlignment="center"
             android:layout_height="45dp">
 
         </com.google.android.gms.common.SignInButton>

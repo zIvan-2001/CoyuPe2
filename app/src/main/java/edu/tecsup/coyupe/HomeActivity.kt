@@ -1,19 +1,19 @@
 package edu.tecsup.coyupe
 
 import android.content.Intent
-import android.os.Binder
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import edu.tecsup.coyupe.databinding.ActivityHomeBinding
-import edu.tecsup.coyupe.databinding.ActivityMainBinding
 
 class   HomeActivity : AppCompatActivity() {
 
@@ -23,12 +23,22 @@ class   HomeActivity : AppCompatActivity() {
 
 //    var ButtonSalir:Button=findViewById(R.id.ButtonSalir)
 //    var NombreId:TextView=findViewById(R.id.NombreId)
-//    var EmailUser:TextView=findViewById(R.id.EmailUsers)
+//    val EmailUser:TextView=(findViewById(R.id.EmailUsers))
+
+    private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val gso=GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail().requestIdToken(getString(R.string.client_id))
+            .build()
+        googleSignInClient= GoogleSignIn.getClient(this,gso)
+
+//        EmailUser.text=Firebase.auth.currentUser!!.email
+
 
         toogle = ActionBarDrawerToggle(this, binding.draweLayout, R.string.open_drawer, R.string.close_drawer)
         binding.draweLayout.addDrawerListener(toogle)
@@ -81,6 +91,11 @@ class   HomeActivity : AppCompatActivity() {
                     startActivity(
                         Intent(this, MainActivity::class.java)
                     )
+
+                    Firebase.auth.signOut()
+                    googleSignInClient.signOut().addOnCompleteListener(this){
+                        finish()
+                    }
                 }
 //                    Toast.makeText(this, "Salte D:", Toast.LENGTH_SHORT).show()
 

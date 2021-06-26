@@ -6,13 +6,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import edu.tecsup.coyupe.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivityMainBinding
     private lateinit var user: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
+
+    companion object{
+        const val RC_SINGIN = 25
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +33,14 @@ class MainActivity : AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
-        /** Funcion */
+        val gso=GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail().requestIdToken(getString(R.string.client_id))
+            .build()
+        googleSignInClient=GoogleSignIn.getClient(this,gso)
+        user=Firebase.auth
+
+
+        /** Funcion MANTENER LOGEADO */
           SignCessionFine()
 
         binding.btnLogin.setOnClickListener{
@@ -31,7 +50,46 @@ class MainActivity : AppCompatActivity() {
         binding.ButtoRegister.setOnClickListener{
             registerUserCoyuPe()
         }
+
+        binding.btnSignIn.setOnClickListener{
+            doSingIn()
+        }
+
     }
+
+    private fun doSingIn(){
+        val signInClient=googleSignInClient.signInIntent
+        startActivityForResult(signInClient, RC_SINGIN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode== RC_SINGIN){
+            val task=GoogleSignIn.getSignedInAccountFromIntent(data)
+
+            try {
+                val account=task.getResult(ApiException::class.java)
+                doAuthetication(account!!.idToken)
+
+            }catch (e: ApiException){
+                Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun doAuthetication(idToken: String?){
+        val credentials=GoogleAuthProvider.getCredential(idToken, null)
+
+        user.signInWithCredential(credentials)
+            .addOnCompleteListener(this){task->
+                if(task.isSuccessful){
+                    startActivity(Intent(this,HomeActivity::class.java))
+                }else{
+                    Toast.makeText(this, "Auth Fail", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
 
     private  fun registerUserCoyuPe(){
         startActivity(Intent(this, RegistroActivity::class.java))
