@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -20,12 +21,9 @@ class   HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var user: FirebaseAuth
     private lateinit var toogle: ActionBarDrawerToggle
-
-//    var ButtonSalir:Button=findViewById(R.id.ButtonSalir)
-//    var NombreId:TextView=findViewById(R.id.NombreId)
-//    val EmailUser:TextView=(findViewById(R.id.EmailUsers))
-
     private lateinit var googleSignInClient: GoogleSignInClient
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,6 +102,38 @@ class   HomeActivity : AppCompatActivity() {
             true
         }
 
+//        val homeFragment = HomeFragment()
+//        val locationFragment = LocationFragment()
+//        val shoppingFragment = ShoppingFragment()
+//
+//        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+//            when(it.itemId){
+//                R.id.nav_home ->{
+//                    setCurrentFragment(homeFragment)
+//                    true
+//                }
+//
+//                R.id.nav_ubication->{
+//                    setCurrentFragment(locationFragment)
+//                    true
+//                }
+//
+//                R.id.nav_carrito ->{
+//                    setCurrentFragment(shoppingFragment)
+//                    true
+//                }
+//                else ->false
+//            }
+//
+//        }
+
+    }
+
+    private fun setCurrentFragment(fragment:Fragment){
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.containerView, fragment)
+            commit()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

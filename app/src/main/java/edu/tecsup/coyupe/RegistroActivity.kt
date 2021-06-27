@@ -20,7 +20,7 @@ class RegistroActivity : AppCompatActivity() {
 
         user = FirebaseAuth.getInstance()
 
-        binding.LinkCuentaId.setOnClickListener{
+        binding.BtnLoginHome.setOnClickListener{
             HomeLogin()
         }
 

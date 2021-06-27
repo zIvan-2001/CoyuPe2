@@ -13,4 +13,7 @@
     <color name="Link">#15C8B3</color>
     <color name="Letra_button">#707070</color>
     <color name="HomeButton">#E8274B</color>
+    <color name="ButtonRegister">#42b72a</color>
+    <color name="ColorApi">#3e3731</color>
+    <color name="FondoApi">#e78d2c</color>
 </resources>

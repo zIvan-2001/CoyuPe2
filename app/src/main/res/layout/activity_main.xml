@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fondo"
+    android:background="@color/FondoApi"
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="5dp"
+        >
 
         <ImageView
             android:layout_width="150dp"
-            android:layout_height="180dp"
+            android:layout_height="150dp"
             android:src="@drawable/logo"
             android:layout_marginLeft="110dp">
         </ImageView>
@@ -28,13 +29,15 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:orientation="vertical"
+        android:background="@color/white"
         android:padding="30dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Correo Electronico"
             android:textSize="18dp"
-            android:textColor="@color/white">
+            android:textStyle="bold"
+            android:textColor="@color/black">
         </TextView>
 
         <EditText
@@ -42,9 +45,8 @@
             android:id="@+id/CorreoEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:inputType="textEmailAddress"
-            android:backgroundTint="@color/white"
             />
 
         <TextView
@@ -52,7 +54,9 @@
             android:layout_height="wrap_content"
             android:text="Contraseña"
             android:textSize="18dp"
-            android:textColor="@color/white">
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            >
         </TextView>
 
         <EditText
@@ -60,16 +64,15 @@
             android:id="@+id/PassEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
             android:inputType="textPassword"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:backgroundTint="@color/botton"
+            android:backgroundTint="@color/ColorApi"
             android:text="Iniciar Sesión" />
 
         <Button
@@ -77,9 +80,46 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Crear una cuenta"
-            android:backgroundTint="@color/botton"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/ButtonRegister"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="2dp"
+                android:background="@color/ColorApi"
+                android:layout_marginTop="10dp"
+                >
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:text="O"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_marginRight="1dp"
+                android:layout_marginLeft="5dp"
+                >
+            </TextView>
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="2dp"
+                android:background="@color/ColorApi"
+                android:layout_marginTop="10dp"
+                >
+            </LinearLayout>
+        </LinearLayout>
         <com.google.android.gms.common.SignInButton
+            android:layout_marginTop="10dp"
             android:id="@+id/btnSignIn"
             android:layout_width="match_parent"
             android:textAlignment="center"
@@ -93,7 +133,7 @@
             android:layout_height="wrap_content"
             android:text="¿Olvidaste tu contraseña?"
             android:textSize="15dp"
-            android:textColor="@color/white">
+            android:textColor="@color/black">
         </TextView>
 
     </LinearLayout>
